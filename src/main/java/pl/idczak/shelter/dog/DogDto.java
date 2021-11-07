@@ -5,7 +5,6 @@ public class DogDto {
     private Long id;
     private String name;
     private Double weight;
-    private String breed;
     private String admissionDate;
     private String adoptionDate;
 
@@ -31,14 +30,6 @@ public class DogDto {
 
     public void setWeight(Double weight) {
         this.weight = weight;
-    }
-
-    public String getBreed() {
-        return breed;
-    }
-
-    public void setBreed(String breed) {
-        this.breed = breed;
     }
 
     public String getAdmissionDate() {

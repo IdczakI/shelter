@@ -11,11 +11,10 @@ public class DogMapper {
         dto.setId(entity.getId());
         dto.setName(entity.getName());
         dto.setWeight(entity.getWeight());
-        dto.setBreed(entity.getBreed());
         if (entity.getAdmissionDate() != null)
             dto.setAdmissionDate(entity.getAdmissionDate().format(formatter));
         if (entity.getAdoptionDate() != null)
-            dto.setAdmissionDate(entity.getAdoptionDate().format(formatter));
+            dto.setAdoptionDate(entity.getAdoptionDate().format(formatter));
         return dto;
     }
 
@@ -23,7 +22,6 @@ public class DogMapper {
         Dog entity = new Dog();
         entity.setId(dto.getId());
         entity.setName(dto.getName());
-        entity.setBreed(dto.getBreed());
         entity.setWeight(dto.getWeight());
         entity.setAdmissionDate(LocalDate.now());
         return entity;

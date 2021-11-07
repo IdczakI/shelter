@@ -12,8 +12,6 @@ public class Dog {
     private String name = "unknown";
     @JoinColumn(nullable = false)
     private Double weight;
-    @JoinColumn(nullable = false)
-    private String breed;
     @JoinColumn(nullable = false, name = "admission_date")
     private LocalDate admissionDate;
     @JoinColumn(name = "adoption_date")
@@ -41,14 +39,6 @@ public class Dog {
 
     public void setWeight(Double weight) {
         this.weight = weight;
-    }
-
-    public String getBreed() {
-        return breed;
-    }
-
-    public void setBreed(String breed) {
-        this.breed = breed;
     }
 
     public LocalDate getAdmissionDate() {

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Dogs in shelter</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+</head>
+<body>
+<div class="text-danger">
+    <p class="text-center" th:text="${message}"></p>
+</div>
+<div>
+    <h3 class="text-center">List of dogs currently staying in the shelter</h3>
+</div>
+<div class="col-4 offset-4">
+    <form class="d-flex" action="#" th:action="@{/dogs}" method="get">
+        <input class="form-control me-3" type="search" placeholder="Search dog" aria-label="Search" name="phrase">
+        <button class="btn btn-outline-dark" type="submit">Search</button>
+    </form>
+</div>
+<div class="col-8 offset-2 shadow p-3 mb-5 bg-body rounded">
+    <table class="table table-striped table-hover">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Weight [kg]</th>
+            <th scope="col">Admission date </th>
+            <th scope="col">Action</th>
+        </tr>
+        </thead>
+        <tbody th:remove="all-but-first">
+        <tr th:each="dog, state : ${dogs}" th:object="${dog}">
+            <th scope="row" th:text="${state.count}">1</th>
+            <td th:text="*{name}">Dog 1</td>
+            <td th:text="*{weight}">10,5</td>
+            <td th:text="*{admissionDate}">2021-01-10</td>
+            <td>
+                <form action="#" th:action="@{/items/adopt}" method="post">
+                    <div class="btn-group" role="group">
+                        <a href="../dog/edit_dog.html" type="button" class="btn btn-primary"
+                           th:href="@{|/dogs/edit/*{id}|}">Edit</a>
+                        <input name="id" th:value="*{id}" type="hidden">
+                        <button class="btn btn-success" type="submit" >Adopt</button>
+                    </div>
+                </form>
+            </td>
+        </tr>
+        <tr th:each="item : ${items}" th:object="${item}">
+            <th scope="row">2</th>
+            <td>Dog 2</td>
+            <td>12,2</td>
+            <td>2020-01-12</td>
+            <td>
+                <form action="#" method="post">
+                    <div class="btn-group" role="group">
+                        <a href="../dog/edit_dog.html" type="button" class="btn btn-primary">Edit</a>
+                        <input type="hidden" name="id">
+                        <button class="btn btn-success" type="submit">Adopt</button>
+                    </div>
+                </form>
+            </td>
+        </tr>
+        <tr th:each="item : ${items}" th:object="${item}">
+            <th scope="row" >3</th>
+            <td >unknown</td>
+            <td >3,1</td>
+            <td >2020-10-10</td>
+            <td>
+                <form action="#"  method="post">
+                    <div class="btn-group" role="group">
+                        <a href="../dog/edit_dog.html" type="button" class="btn btn-primary">Edit</a>
+                        <input  type="hidden" name="id">
+                        <button class="btn btn-success" type="submit">Adopt</button>
+                    </div>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<div class="d-grid gap-2 col-2 mx-auto">
+    <a href="../dog/add_dog.html" type="button" class="btn btn-primary" th:href="@{/dogs/add}">Bring new dog</a>
+</div>
+<br>
+<div class="d-grid gap-2 col-2 mx-auto">
+    <a href="../dog/dogs_adopted.html" type="button" class="btn btn-success" th:href="@{/dogs/adopted}">Show list of adopted dogs</a>
+</div>
+</body>
+</html>
